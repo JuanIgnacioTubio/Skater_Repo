@@ -80,6 +80,7 @@ void ASkater_BGSCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 		//Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ASkater_BGSCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ASkater_BGSCharacter::StopAccelerating);
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASkater_BGSCharacter::Look);
@@ -116,7 +117,7 @@ void ASkater_BGSCharacter::Move_Implementation(const FInputActionValue& Value)
 	}
 }
 
-void ASkater_BGSCharacter::Look(const FInputActionValue& Value)
+void ASkater_BGSCharacter::Look_Implementation(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -128,7 +129,3 @@ void ASkater_BGSCharacter::Look(const FInputActionValue& Value)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 }
-
-
-
-

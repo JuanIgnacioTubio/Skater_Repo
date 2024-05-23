@@ -52,6 +52,10 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void Move(const FInputActionValue& Value);
 
+	/** Called for looking input */
+	UFUNCTION(BlueprintNativeEvent)
+	void Look(const FInputActionValue& Value);
+
 	/** Called to open pause the game and open the pause menu */
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void Pause();
@@ -60,10 +64,12 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void ChangeMovementMode();
 
+	/** Used to set bAccelerating to false when the input is let go */
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void StopAccelerating();
+
 protected:
 
-	/** Called for looking input */
-	void Look(const FInputActionValue& Value);
 			
 
 protected:

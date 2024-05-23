@@ -37,14 +37,30 @@ class ASkater_BGSCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/** Open Pause Menu */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* PauseAction;
+
+	/** Change between walking and skating by changing bSkating's value */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* ModeChangeAction;
+
 public:
 	ASkater_BGSCharacter();
 	
+	/** Called for movement input */
+	UFUNCTION(BlueprintNativeEvent)
+	void Move(const FInputActionValue& Value);
+
+	/** Called to open pause the game and open the pause menu */
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void Pause();
+
+	/** Called to open pause the game and open the pause menu */
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void ChangeMovementMode();
 
 protected:
-
-	/** Called for movement input */
-	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);

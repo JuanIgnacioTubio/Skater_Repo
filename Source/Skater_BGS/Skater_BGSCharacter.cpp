@@ -84,11 +84,16 @@ void ASkater_BGSCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASkater_BGSCharacter::Look);
 
+		//Pausing
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &ASkater_BGSCharacter::Pause);
+
+		//Changing Movement Mode
+		EnhancedInputComponent->BindAction(ModeChangeAction, ETriggerEvent::Triggered, this, &ASkater_BGSCharacter::ChangeMovementMode);
 	}
 
 }
 
-void ASkater_BGSCharacter::Move(const FInputActionValue& Value)
+void ASkater_BGSCharacter::Move_Implementation(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();

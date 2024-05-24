@@ -68,9 +68,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void StopAccelerating();
 
-protected:
-
-			
+	/** Used when the pause menu is closed to set bPaused to false and resume the game */
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void ResumeGame();
 
 protected:
 	// APawn interface
